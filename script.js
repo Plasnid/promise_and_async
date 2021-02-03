@@ -16,7 +16,23 @@ let p2 = new Promise((resolve, reject) =>{
     }
 });
 
-Promise.all([p1,p2]).then(function(){
+function resolveAction(){
+    console.log("entering resolveAction");
+}
+function rejectAction(){
+    console.log("entering rejectAction");
+}
+
+let p3 = new Promise((resolve, reject) =>{
+    let a = 1 + 1;
+    if(a==3){
+        resolve(resolveAction());
+    }else{
+        reject(rejectAction());
+    }
+})
+
+Promise.all([p1,p2,p3]).then(function(){
     console.log("all the parts are ready, lets go!");
 }).catch(function(){
     console.log(`not yet ready!  something is broken`);
